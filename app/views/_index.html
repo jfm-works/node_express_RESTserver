@@ -21,6 +21,7 @@
                     <button onclick="rest_put()">put</button>
                     <button onclick="rest_delete()">delete</button>
                     <button onclick="loginAndGetSessionid()">login</button>
+                    <button class="hiddenToken" onclick="sendhiddenToken()">sendSessionid</button>
                 </div>
                 <div>
                     id<input id="input_id" type="text">
@@ -42,6 +43,21 @@
         function showRESTResponse(text) {
             console.log(text);
             document.getElementById("show_response_field").innerHTML = text;
+        }
+
+        function setHiddenToken(data) {
+            if (data.token == "undefined") {
+                return;
+            }
+            const target_arr = document.getElementsByClassName("hiddenToken");
+            console.log(target_arr);
+            
+            // target_arr.forEach(element => {
+            //     element.onclick="loginAndGetSessionid("+data.token+")";
+            // });
+        }
+        function sendhiddenToken(params) {
+            console.log(params);
         }
 
         function rest_get(params) {
@@ -73,7 +89,8 @@
                 },
                 body: JSON.stringify(data)
             }).then(response => response.text())
-            .then(text => showRESTResponse(text));
+            // .then(text => showRESTResponse(text))
+            .then(text => setHiddenToken(text));
         }
         function rest_put(params) {
             const body = new FormData();

@@ -9,3 +9,17 @@ services:
     volumes:
       - ./app:/app
     command: [sh, -c, npm install && npm start]
+    depends_on:
+      - mongo_db
+  mongo_db:
+    image: mongo:4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      TZ: Asia/Tokyo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/db:/data/db
+      - ./mongo/configdb:/data/configdb
+      - ./mongo/init:/docker-entrypoint-initdb.d

@@ -1,5 +1,7 @@
 //
 //
+// get
+
 
 // ログインのため、idとpwをサーバに送信する
 function loginAndGetSessionid(id,pw) {
@@ -17,6 +19,7 @@ app.post('/login', function(req, res) {
     console.log(req);
     res = response;
 });
+
 
 // 認証情報をサーバに送信する
 //<INPUT TYPE="HIDDEN" NAME="MEMBERFLG" VALUE=<%= bolMember %>>
